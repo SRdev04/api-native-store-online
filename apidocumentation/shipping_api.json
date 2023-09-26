@@ -1,0 +1,283 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Shipping RESTful API",
+      "description": "OpenAPI For Shipping RESTful API",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000/api"
+      }
+    ],
+    "paths": {
+      "/shipping": {
+        "get": {
+          "security": [
+            {
+              "ShippingLock": []
+            }
+          ],
+          "summary": "List All Shipping",
+          "tags": ["Shipping API"],
+          "description": "List All Shipping",
+          "responses": {
+            "200": {
+              "description": "Success Get Shipping",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Shipping"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "security": [
+            {
+              "ShippingLock": []
+            }
+          ],
+          "summary": "Create Shipping",
+          "tags": ["Shipping API"],
+          "description": "Create New Shipping",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Shipping"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success Create Shipping",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Shipping"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/shipping/{shippingId}": {
+        "get": {
+          "security": [
+            {
+              "ShippingLock": []
+            }
+          ],
+          "tags": ["Shipping API"],
+          "summary": "Get Shipping By Id",
+          "description": "Shipping By Id",
+          "parameters": [
+            {
+              "name": "shippingId",
+              "in": "path",
+              "description": "Shipping Id",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success Get Shipping by Id",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Shipping"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "security": [
+            {
+              "ShippingLock": []
+            }
+          ],
+          "tags": ["Shipping API"],
+          "description": "Update Shipping By Id",
+          "summary": "Update Shipping by Id",
+          "parameters": [
+            {
+              "name": "shippingId",
+              "in": "path",
+              "description": "Shipping Id",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Shipping"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success Update Shipping",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Shipping"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "security": [
+            {
+              "ShippingLock": []
+            }
+          ],
+          "tags": ["Shipping API"],
+          "summary": "Delete Shipping By Id",
+          "description": "Shipping By Id",
+          "parameters": [
+            {
+              "name": "shippingId",
+              "in": "path",
+              "description": "Shipping Id",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success Delete Shipping",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "ShippingLock": {
+          "type": "apiKey",
+          "name": "X-ApiKey-X",
+          "in": "header",
+          "description": "Authentication ApiKey For Shipping"
+        }
+      },
+      "schemas": {
+        "Shipping": {
+          "type": "object",
+          "properties": {
+            "Id": {
+              "type": "integer"
+            },
+            "User_Id": {
+              "type": "integer"
+            },
+            "Kota": {
+              "type": "string"
+            },
+            "Kecamatan": {
+              "type": "string"
+            },
+            "Kelurahan": {
+              "type": "string"
+            },
+            "Jalan": {
+              "type": "string"
+            },
+            "Wa": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,359 @@
+{
+"openapi":"3.0.3",
+"info": {
+    "title": "Customer RESTful API",
+    "description": "OpenAPI For Customer RESTful API",
+    "version": "1.0.0"
+    
+    
+},
+"servers": [
+{
+    
+    "url": "http://localhost:3000/api"
+}
+],
+
+"paths": {
+    
+    "/products":{      
+        
+"get":{
+    "security": [
+        {
+            "ProductsLock":[]
+        }
+    ],
+"summary": "List All Products",
+"tags": ["Products API"],
+"description": "List All Products",    
+"responses": {
+        "200":{
+            "description": "Succes Create Customer",
+            "content": {
+                "application/json":{
+                    "schema":{
+                        "type": "object",
+                        "properties": {
+                                "code":{
+                                    "type": "number"
+                                },
+                                "status" :{
+                                    "type": "string"
+                                },
+                                "data":{
+                                    "type": "array",
+                                    "items":{
+                                        "$ref": "#/components/schemas/Products"
+                                    
+                                            
+                                        
+                                            
+                                        
+                                    
+                                }
+                            }
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+    }
+},
+
+        
+"post":{
+    "security": [
+        {
+            "ProductsLock":[]
+        }
+    ],
+"summary": "Create Product",
+    "tags": ["Products API"],
+        "description": "Create New Products",
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "$ref": "#/components/schemas/InsertOrUpdate"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200":{
+                    "description": "Succes Create Products",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "code":{
+                                        "type": "number"
+                                    },
+                                    "status":{
+                                        "type": "string"
+                                    },
+                                    "data":{
+                                        "type": "array",
+                                        "items":{
+                                            "$ref": "#/components/schemas/Products"
+                                        }
+                                    }
+                                }
+                                
+                                
+                                
+                            }
+                        
+                        }
+                    }
+                }
+            }
+        }
+ 
+    },
+    "/products/{productsId}":{
+        "get":{
+            "security": [
+                {
+                    "ProductsLock":[]
+                }
+            ],
+            "tags": ["Products API"],
+            "summary": "Get Product By Id",
+            "description": "Products By Id",
+            "parameters": [
+                {
+                    "name": "productsId",
+                    "in": "path",
+                    "description": "Products Id"
+                  
+                }
+            ],
+            "responses": {
+                "200":{
+                    "description": "Succes Get Id Product",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "code":{
+                                        "type": "number"
+                                    },
+                                    "status":{
+                                        "type": "string"
+                                    },
+                                    "data":{
+                                        "type": "array",
+                                        "items":{
+                                            "$ref": "#/components/schemas/Products"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "put":{
+            "security": [
+                {
+                    "ProductsLock":[]
+                }
+            ],
+            "tags": ["Products API"],
+            "description": "Update Product By Id",
+            "summary": "Update product by id",
+             "parameters": [
+                {
+                    "name": "productsId",
+                    "in": "path",
+                    "description": "Products Id"
+                  
+                }
+            ],
+             "requestBody":{
+                "content": {
+                    "application/json":{
+                       "schema":{
+                        "$ref": "#/components/schemas/InsertOrUpdate"
+                       }
+                    }
+                }
+            },
+             "responses": {
+                "200":{
+                    "description": "Succes Create Products",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "code":{
+                                        "type": "number"
+                                    },
+                                    "status":{
+                                        "type": "string"
+                                    },
+                                    "data":{
+                                        "type": "array",
+                                        "items":{
+                                            "$ref": "#/components/schemas/Products"
+                                        }
+                                    }
+                                }
+                                
+                                
+                                
+                            }
+                        
+                        }
+                    }
+                }
+            }
+        },
+         "delete":{
+            "security": [
+                {
+
+                    "ProductsLock":[]
+                }
+            ],
+            "tags": ["Products API"],
+            "summary": "Delete Product By Id",
+            "description": "Products By Id",
+            "parameters": [
+                {
+                    "name": "productsId",
+                    "in": "path",
+                    "description": "Products Id"
+                  
+                }
+            ],
+            "responses": {
+                "200":{
+                    "description": "Succes Delete Id Product",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "code":{
+                                        "type": "number"
+                                    },
+                                    "status":{
+                                        "type": "string"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "post":{
+            "tags": ["Products API"],
+            "summary": "Post into cart or orders now",
+            "description": "Post Form Into Cart or orders now",
+            "parameters": [
+                {
+                    "name": "productsId",
+                    "in": "path",
+                    "description": "Product Id"
+                }
+                
+            ],
+            "responses": {
+                "200":{
+                    "description": "succes Add To Cart or Orders Now",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "code":{
+                                        "type": "number"
+                                    },
+                                    "status":{
+                                        "type": "string"
+                                    },
+                                    "data":{
+                                        "type": "array",
+                                        "items":{
+                                            "$ref": "#/components/schemas/InsertOrUpdate"
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+},
+"components": {
+    "securitySchemes": {
+        "ProductsLock":{
+            "type": "apiKey",
+            "name": "X-ApiKey-X",
+            "in": "header",
+            "description": "Authentication ApiKey For Products"
+        }
+    },
+"schemas": {
+     "InsertOrUpdate":{
+                            "type": "object",
+                            "properties": {
+                                "name":{
+                                    "type": "string"
+
+                                },
+                                "price":{
+                                    "type": "number"
+                                },
+                                "description":{
+                                    "type": "string"
+                                },
+                                "quantity":{
+                                    "type": "number"
+                                }
+                            
+                            }
+                        },
+"Products":{
+"type": "object",
+            "properties": {
+                "id":{
+                    "type": "number"
+                },
+                    "name":{
+                        "type": "string"
+                    },
+                    
+                    "price":{
+                        "type": "number"
+                    },
+                    "description":{
+                        "type": "string"
+                    },
+                    "quantity":{
+                        "type": "number"
+                    }
+
+}
+}
+
+}
+}
+}

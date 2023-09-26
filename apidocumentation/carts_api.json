@@ -1,0 +1,326 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Customer RESTful API",
+      "description": "OpenAPI For Customer RESTful API",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000/api"
+      }
+    ],
+    "paths": {
+      "/api/carts": {
+        "get": {
+          "security": [
+            {
+              "ProductsLock": []
+            }
+          ],
+          "summary": "List All Products",
+          "tags": ["Products API"],
+          "description": "List All Products",
+          "responses": {
+            "200": {
+              "description": "Success Get Products",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/ResultCarts"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "security": [
+            {
+              "ProductsLock": []
+            }
+          ],
+          "summary": "Create Product",
+          "tags": ["Products API"],
+          "description": "Create New Products",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultCarts"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success Create Product",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/ResultCarts"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/carts/{:cartid}": {
+        "get": {
+          "security": [
+            {
+              "ProductsLock": []
+            }
+          ],
+          "tags": ["Products API"],
+          "summary": "Get Product By Id",
+          "description": "Products By Id",
+          "parameters": [
+            {
+              "name": "productsId",
+              "in": "path",
+              "description": "Products Id",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success Get Product by Id",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/ResultCarts"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "security": [
+            {
+              "ProductsLock": []
+            }
+          ],
+          "tags": ["Products API"],
+          "description": "Update Product By Id",
+          "summary": "Update Product by Id",
+          "parameters": [
+            {
+              "name": "productsId",
+              "in": "path",
+              "description": "Products Id",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultCarts"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success Update Product",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/ResultCarts"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "security": [
+            {
+              "ProductsLock": []
+            }
+          ],
+          "tags": ["Products API"],
+          "summary": "Delete Product By Id",
+          "description": "Products By Id",
+          "parameters": [
+            {
+              "name": "productsId",
+              "in": "path",
+              "description": "Products Id",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success Delete Product",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": ["Products API"],
+          "summary": "Post into cart or orders now",
+          "description": "Post Form Into Cart or orders now",
+          "parameters": [
+            {
+              "name": "productsId",
+              "in": "path",
+              "description": "Product Id",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success Add To Cart or Orders Now",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/ResultCarts"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "ProductsLock": {
+          "type": "apiKey",
+          "name": "X-ApiKey-X",
+          "in": "header",
+          "description": "Authentication ApiKey For Products"
+        }
+      },
+      "schemas": {
+        "ResultCarts": {
+          "type": "object",
+          "properties": {
+            "Id": {
+              "type": "integer"
+            },
+            "Id_Products": {
+              "type": "integer"
+            },
+            "User_Id": {
+              "type": "integer"
+            },
+            "Name": {
+              "type": "string"
+            },
+            "Price_Carts": {
+              "type": "integer"
+            },
+            "Description": {
+              "type": "string"
+            },
+            "Quantity": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  

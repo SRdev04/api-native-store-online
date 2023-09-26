@@ -1,0 +1,128 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "User Authentication RESTful API",
+      "description": "OpenAPI For User Authentication RESTful API",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000/api"
+      }
+    ],
+    "paths": {
+      "/register": {
+        "post": {
+          "summary": "Register User",
+          "tags": ["Authentication API"],
+          "description": "Register a new user",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success Register User",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "$ref": "#/components/schemas/Users"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/login": {
+        "post": {
+          "summary": "Login User",
+          "tags": ["Authentication API"],
+          "description": "Authenticate a user",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginCredentials"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success Login User",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "token": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Users": {
+          "type": "object",
+          "properties": {
+            "Username": {
+              "type": "string"
+            },
+            "Email": {
+              "type": "string"
+            },
+            "Password": {
+              "type": "string"
+            }
+          }
+        },
+        "LoginCredentials": {
+          "type": "object",
+          "properties": {
+            "Username": {
+              "type": "string"
+            },
+            "Password": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+  

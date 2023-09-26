@@ -1,0 +1,247 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Orders Detail RESTful API",
+      "description": "OpenAPI For Orders Detail RESTful API",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000/api"
+      }
+    ],
+    "paths": {
+      "/api/orders": {
+        "get": {
+          "security": [
+            {
+              "OrdersDetailLock": []
+            }
+          ],
+          "summary": "List All Orders Detail",
+          "tags": ["Orders Detail API"],
+          "description": "List All Orders Detail",
+          "responses": {
+            "200": {
+              "description": "Success Get Orders Detail",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Orders_Detail"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "security": [
+            {
+              "OrdersDetailLock": []
+            }
+          ],
+          "summary": "Create Orders Detail",
+          "tags": ["Orders Detail API"],
+          "description": "Create New Orders Detail",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Orders_Detail"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success Create Orders Detail",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Orders_Detail"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/orders/:{ordersid}": {
+        "get": {
+          "security": [
+            {
+              "OrdersDetailLock": []
+            }
+          ],
+          "tags": ["Orders Detail API"],
+          "summary": "Get Orders Detail By Id",
+          "description": "Orders Detail By Id",
+          "parameters": [
+            {
+              "name": "ordersDetailId",
+              "in": "path",
+              "description": "Orders Detail Id",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success Get Orders Detail by Id",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Orders_Detail"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "security": [
+            {
+              "OrdersDetailLock": []
+            }
+          ],
+          "tags": ["Orders Detail API"],
+          "description": "Update Orders Detail By Id",
+          "summary": "Update Orders Detail by Id",
+          "parameters": [
+            {
+              "name": "ordersDetailId",
+              "in": "path",
+              "description": "Orders Detail Id",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Orders_Detail"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success Update Orders Detail",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Orders_Detail"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "OrdersDetailLock": {
+          "type": "apiKey",
+          "name": "X-ApiKey-X",
+          "in": "header",
+          "description": "Authentication ApiKey For Orders Detail"
+        }
+      },
+      "schemas": {
+        "Products": {
+          "type": "object",
+          "properties": {
+            "Id_Products": {
+              "type": "integer"
+            },
+            "Price": {
+              "type": "integer"
+            },
+            "Quantity": {
+              "type": "integer"
+            }
+          }
+        },
+        "Orders_Detail": {
+          "type": "object",
+          "properties": {
+            "Id_Orders": {
+              "type": "integer"
+            },
+            "Id_User": {
+              "type": "integer"
+            },
+            "Product": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Products"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
